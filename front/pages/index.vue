@@ -1,7 +1,17 @@
 <template>
-  <Tutorial/>
+  <Header/>
 </template>
 
 <script>
-export default {}
+import Header from '@/components/includes/header.vue'
+
+export default {
+  components:{
+    Header
+  }
+}
 </script>
+
+<style>
+
+</style>
