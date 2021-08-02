@@ -6,7 +6,17 @@
         </a>
       </div>
       <div class="header--right">
-          <!-- <img src="~/assets/img/headerbasket.bmp"/> -->
+          <ul>
+              <li>
+                  <a href="#">register</a>
+              </li>
+              <li>
+                  <a href="#">admin</a>
+              </li>
+              <li>
+                  <img width="30" src="~/assets/img/shopping-cart.png"/>
+              </li>
+          </ul>
       </div>
   </div>
 </template>
@@ -18,11 +28,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
 .header{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    padding: 0px 15px 0px 15px;
     &--left{
         &__logo{
             color: black;
@@ -33,9 +44,21 @@ export default {
         }
     }
     &--right{
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        ul{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0px;
+            list-style: none;
+            li{
+                padding:10px;
+                a{
+                    color:black;
+                    text-decoration: none;
+                    font-size: 20px;
+                }
+            }
+        }
     }
 }
 
