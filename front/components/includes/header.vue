@@ -6,7 +6,7 @@
         </a>
       </div>
       <div class="header--right">
-          <!-- <img src="~/assets/img/headerbasket.bmp"/> -->
+          <img width="30" src="~\assets\img\5eoevlvs.bmp"/>
       </div>
   </div>
 </template>
