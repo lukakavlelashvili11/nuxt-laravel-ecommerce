@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Header />
     <ProductFilter />
   </div>
 </template>

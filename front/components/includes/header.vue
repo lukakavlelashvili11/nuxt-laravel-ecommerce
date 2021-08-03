@@ -1,14 +1,17 @@
 <template>
   <div class="header">
       <div class="header--left">
-        <a href="index.php" class="header--left__logo">
+        <NuxtLink to="/" class="header--left__logo">
             <h3>guitar shop</h3>
-        </a>
+        </NuxtLink>
       </div>
       <div class="header--right">
           <ul>
+              <li v-if="$auth.loggedIn">
+                  {{ $auth.user.email }}
+              </li>
               <li>
-                  <a href="#">register</a>
+                  <NuxtLink to="/signIn">register</NuxtLink>
               </li>
               <li>
                   <a href="#">admin</a>

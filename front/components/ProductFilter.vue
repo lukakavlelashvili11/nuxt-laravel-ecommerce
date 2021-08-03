@@ -1,7 +1,7 @@
 <template>
   <div class="filter">
       <img width="20" src="~/assets/img/filter.png" role="button" @click="filterOptions = !filterOptions">
-      <div class="filter-options mt-3">
+      <div class="filter-options mt-3" v-if="filterOptions">
         <div class="filter-options__top">
           <span>product</span>
           <span>brand</span>
@@ -60,7 +60,7 @@ export default {
     left:20px;
     &-options{
       width: 400px;
-      box-shadow: 0px 0px 5px gray;
+      box-shadow: 0px 0px 5px rgb(106, 117, 209);
       &__top{
         display: flex;
         justify-content: space-around;
