@@ -42,22 +42,23 @@ export default {
                 url: 'http://localhost:8000',
                 endpoints: {
                     login: {
-                        url: '/api/login'
+                        url: '/api/login',
+                        method: 'POST'
                     },
-                    logout: {
-                        method: 'post',
-                        url: '/api/logout'
-                    },
-                    user: {
-                        url: '/api/user'
-                    }
+                    // logout: {
+                    //     method: 'post',
+                    //     url: '/api/logout'
+                    // },
+                    // user: {
+                    //     url: '/api/user'
+                    // }
                 }
             }
         }
     },
 
     axios: {
-        baseURL: "http://localhost:8000/api"
+        // baseURL: "http://localhost:8000/api"
     },
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
