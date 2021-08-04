@@ -1,58 +1,65 @@
 export default {
-  // Global page headers: https://go.nuxtjs.dev/config-head
-  head: {
-    title: 'front',
-    htmlAttrs: {
-      lang: 'en'
+    // Global page headers: https://go.nuxtjs.dev/config-head
+    head: {
+        title: 'front',
+        htmlAttrs: {
+            lang: 'en'
+        },
+        meta: [
+            { charset: 'utf-8' },
+            { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+            { hid: 'description', name: 'description', content: '' },
+            { name: 'format-detection', content: 'telephone=no' }
+        ],
+        link: []
     },
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+
+    // Global CSS: https://go.nuxtjs.dev/config-css
+    css: [],
+
+    // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
+    plugins: [
+        { src: '@/plugins/rangeSlider', ssr: false }
     ],
-    link: [
-    ]
-  },
 
-  // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-  ],
+    // Auto import components: https://go.nuxtjs.dev/config-components
+    components: true,
 
-  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    {src: '@/plugins/rangeSlider', ssr: false}
-  ],
+    // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
+    buildModules: [],
 
-  // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
+    // Modules: https://go.nuxtjs.dev/config-modules
+    modules: [
+        'bootstrap-vue/nuxt',
+        '@nuxtjs/axios',
+        '@nuxtjs/auth-next'
+    ],
 
-  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [
-  ],
-
-  // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-    'bootstrap-vue/nuxt',
-    '@nuxtjs/axios',
-    '@nuxtjs/auth-next'
-  ],
-
-  auth: {
-    strategies: {
-      'laravelSanctum': {
-        provider: 'laravel/sanctum',
-        url: 'http://localhost:8000',
-        endpoints: {
-          login: {
-            url: '/api/login'
-          }
+    auth: {
+        strategies: {
+            'laravelSanctum': {
+                provider: 'laravel/sanctum',
+                url: 'http://localhost:8000',
+                endpoints: {
+                    login: {
+                        url: '/api/login'
+                    },
+                    logout: {
+                        method: 'post',
+                        url: '/api/logout'
+                    },
+                    user: {
+                        url: '/api/user'
+                    }
+                }
+            }
         }
-      }
-    }
-  },
+    },
 
-  // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-  }
+    axios: {
+        baseURL: "http://localhost:8000/api"
+    },
+
+    // Build Configuration: https://go.nuxtjs.dev/config-build
+    build: {}
 }

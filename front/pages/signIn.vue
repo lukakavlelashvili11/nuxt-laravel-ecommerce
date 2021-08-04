@@ -42,11 +42,11 @@
 <script>
 export default {
   methods:{
-    signIn(){
-      this.$auth.loginWith('laravelSanctum',{
+    async signIn(){
+      await this.$auth.loginWith('laravelSanctum',{
         data:{
           email: 'luka@example.com',
-          password: 'password'
+          password: 'luka12345'
         }
       })
     }
