@@ -1,6 +1,6 @@
 <template>
   <div>
-      <div class="register mx-auto mt-5 p-3">
+      <div class="register mx-auto mt-5 mb-5 p-3">
         <div class="pick w-100 d-flex justify-content-center">
           <img class="position-absolute" width="100" src="~/assets/img/pick.png"/>
         </div>
@@ -11,25 +11,33 @@
         <div class="mt-3">
           <div class="d-flex justify-content-center flex-column">
             <span class="font-weight-bold mb-1">Email:</span>
-            <b-form-input class="input"/>
+            <b-form-input class="input" v-model="form.email"/>
           </div>
+
+          <span class="text-danger" 
+          v-if="errors.email.length" 
+          v-for="err in errors.email">{{ err }}</span>
+
           <div class="d-flex justify-content-center mt-4 flex-column">
             <span class="font-weight-bold mb-1">Username:</span>
-            <b-form-input class="input"/>
+            <b-form-input class="input" v-model="form.username"/>
           </div>
+
+          <span class="text-danger" 
+          v-if="errors.username.length" 
+          v-for="err in errors.username">{{ err }}</span>
+
           <div class="d-flex justify-content-center mt-4 flex-column">
             <span class="font-weight-bold mb-1">Password:</span>
-            <b-form-input class="input"/>
+            <b-form-input class="input" type="password" v-model="form.password"/>
           </div>
-          <div class="w-100 mt-4 d-flex justify-content-between align-items-center">
-              <div class="d-flex justify-content-start">
-                <b-form-checkbox switch/>
-                <span class="ml-1 text-secondary">Remember me</span>
-              </div>
-              <a href="#">Forgot Password?</a>
-          </div>
+
+          <span class="text-danger" 
+          v-if="errors.password.length" 
+          v-for="err in errors.password">{{ err }}</span>
+
         </div>
-        <button class="register__button w-100 mt-4">Sign in</button>
+        <button class="register__button w-100 mt-4" @click="signUp">Sign up</button>
         <div class="w-100 d-flex justify-content-center mt-3">
           <span class="text-secondary">or</span>
         </div>
@@ -37,7 +45,7 @@
           <div class="google-logo">
             <img src="~/assets/img/google-logo.png"/>
           </div>
-          <span class="text-white font-weight-bold">Sign in wth Google</span>
+          <span class="text-white font-weight-bold">Sign in with Google</span>
         </div>
       </div>
   </div>
@@ -45,7 +53,49 @@
 
 <script>
 export default {
-
+  data(){
+    return{
+      form:{
+        username: '',
+        email: '',
+        password: ''
+      },
+      errors:{
+        email:[],
+        username:[],
+        password:[]
+      }
+    }
+  },
+  methods:{
+    async signUp(){
+      try{
+        // let data = {
+        //   username: this.form.username,
+        //   email: this.form.email,
+        //   password: this.form.password
+        // }
+        await this.$axios.post('/signup',{
+          username: this.form.username,
+          email: this.form.email,
+          password: this.form.password
+        });
+        // await this.$auth.loginWith('laravelSanctum',{
+        //   data:{
+        //     email: this.form.email,
+        //     password: this.form.password,
+        //     remember: false
+        //   }
+        // })
+        this.$route.push('/');
+      }catch(e){
+        if(e.response && e.response.status == 422){
+          Object.assign(this.errors,e.response.data.errors);
+          this.form.password = '';
+        }
+      }
+    }
+  }
 }
 </script>
 

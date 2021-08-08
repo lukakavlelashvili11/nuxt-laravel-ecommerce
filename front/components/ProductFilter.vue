@@ -61,6 +61,9 @@ export default {
     &-options{
       width: 400px;
       box-shadow: 0px 0px 5px rgb(106, 117, 209);
+      position: absolute;
+      z-index: 100;
+      background: whitesmoke;
       &__top{
         display: flex;
         justify-content: space-around;

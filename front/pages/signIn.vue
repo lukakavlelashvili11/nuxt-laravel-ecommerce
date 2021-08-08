@@ -1,25 +1,38 @@
 <template>
   <div>
-      <div class="register mx-auto mt-5 p-3">
+      <div class="register mx-auto mt-5 mb-5 p-3">
         <div class="pick w-100 d-flex justify-content-center">
           <img class="position-absolute" width="100" src="~/assets/img/pick.png"/>
         </div>
         <div class="d-flex justify-content-between align-items-center">
           <h4>Sign in</h4>
-          <NuxtLink to="/signUp">Create account</NuxtLink>
+          <NuxtLink to="/signup">Create account</NuxtLink>
         </div>
         <div class="mt-3">
+          <div v-if="errors.wrong" class="w-100 d-flex justify-content-center">
+            <span class="text-danger">{{ errors.wrong }}</span>
+          </div>
           <div class="d-flex justify-content-center flex-column">
             <span class="font-weight-bold mb-1">Email:</span>
-            <b-form-input class="input"/>
+            <b-form-input class="input" v-model="form.email"/>
           </div>
+
+          <span class="text-danger" 
+          v-if="errors.email.length" 
+          v-for="err in errors.email">{{ err }}</span>
+
           <div class="d-flex justify-content-center mt-4 flex-column">
             <span class="font-weight-bold mb-1">Password:</span>
-            <b-form-input class="input"/>
+            <b-form-input class="input" type="password" v-model="form.password"/>
           </div>
+
+          <span class="text-danger" 
+          v-if="errors.password.length" 
+          v-for="err in errors.password">{{ err }}</span>
+
           <div class="w-100 mt-4 d-flex justify-content-between align-items-center">
               <div class="d-flex justify-content-start">
-                <b-form-checkbox switch/>
+                <b-form-checkbox switch v-model="form.remember"/>
                 <span class="ml-1 text-secondary">Remember me</span>
               </div>
               <a href="#">Forgot Password?</a>
@@ -29,11 +42,11 @@
         <div class="w-100 d-flex justify-content-center mt-3">
           <span class="text-secondary">or</span>
         </div>
-        <div class="google-button position-relative w-100 d-flex justify-content-center align-items-center mt-3">
+        <div @click="logout" class="google-button position-relative w-100 d-flex justify-content-center align-items-center mt-3">
           <div class="google-logo">
             <img src="~/assets/img/google-logo.png"/>
           </div>
-          <span class="text-white font-weight-bold">Sign in wth Google</span>
+          <span class="text-white font-weight-bold">Sign in with Google</span>
         </div>
       </div>
   </div>
@@ -41,14 +54,43 @@
 
 <script>
 export default {
+  data(){
+    return{
+      form:{
+        email: '',
+        password: '',
+        remember: false
+      },
+      errors:{
+        email:[],
+        password:[],
+        wrong: ''
+      }
+    }
+  },
   methods:{
     async signIn(){
-      await this.$auth.loginWith('laravelSanctum',{
-        data:{
-          email: 'luka@example.com',
-          password: 'luka12345'
+      try{
+        await this.$auth.loginWith('laravelSanctum',{
+          data:{
+            email: this.form.email,
+            password: this.form.password,
+            remember: this.form.remember
+          }
+        })
+      }catch(e){
+        if(e.response && e.response.status == 422){
+          Object.assign(this.errors,e.response.data.errors);
+          this.form.password = '';
         }
-      })
+        if(e.response && e.response.status == 401){
+          this.errors.wrong = 'Email or password is invalid!'
+          this.form.password = '';
+        }
+      }
+    },
+    logout(){
+      this.$auth.logout();
     }
   }
 }

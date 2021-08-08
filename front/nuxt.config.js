@@ -45,22 +45,29 @@ export default {
                         url: '/api/login',
                         method: 'POST'
                     },
-                    // logout: {
-                    //     method: 'post',
-                    //     url: '/api/logout'
-                    // },
-                    // user: {
-                    //     url: '/api/user'
-                    // }
+                    logout: {
+                        url: '/api/logout',
+                        method: 'POST'
+                    },
+                    user: {
+                        url: '/api/user',
+                        methods: 'GET'
+                    }
                 }
             }
         }
     },
 
     axios: {
-        // baseURL: "http://localhost:8000/api"
+        credentials: true,
+        baseURL: "http://localhost:8000/api"
     },
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
-    build: {}
+    build: {},
+
+    loading: {
+        color: '#a7f8fc',
+        height: '2px'
+      }
 }

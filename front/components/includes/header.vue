@@ -8,13 +8,13 @@
       <div class="header--right">
           <ul>
               <li v-if="$auth.loggedIn">
-                  {{ $auth.user.email }}
+                  {{ $auth.user.name }}
               </li>
-              <li>
-                  <NuxtLink to="/signIn">register</NuxtLink>
+              <li v-else>
+                  <NuxtLink to="/signin">User</NuxtLink>
               </li>
-              <li>
-                  <a href="#">admin</a>
+              <li v-if="$auth.loggedIn && $auth.user.is_admin">
+                  <a href="#">Admin</a>
               </li>
               <li>
                   <img width="30" src="~/assets/img/shopping-cart.png"/>
@@ -32,11 +32,13 @@ export default {
 
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+
 .header{
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 15px 0px 15px;
+    padding: 0px 15px 0px 10px;
     &--left{
         &__logo{
             color: black;

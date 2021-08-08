@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\SignupController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,4 +22,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/login',[LoginController::class]);
+Route::post('/login',LoginController::class);
+Route::post('/signup',SignupController::class);
+Route::post('/logout',LogoutController::class);
+
+Route::get('/category',[CategoryController::class,'get']);
+Route::post('/category/save',[CategoryController::class,'store']);
