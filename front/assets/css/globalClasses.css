@@ -1,0 +1,5 @@
+.table-long-text{
+    width: 300px;
+    max-height:90px;
+    overflow-y:auto;
+}

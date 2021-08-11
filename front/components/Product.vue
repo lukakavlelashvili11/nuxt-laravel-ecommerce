@@ -29,15 +29,15 @@ export default {
     data(){
         return{
             lari: true,
-            // dollar: false
         }
     },
     methods:{
         changeValute(){
-            if(this.lari)
+            if(this.lari){
                 this.lari = false;
-            else
+            }else{
                 this.lari = true;
+            }
         }
     },
     mounted(){

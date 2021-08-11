@@ -3,11 +3,26 @@
 
       <b-modal v-model="modal" hide-footer centered>
           <div>
-              <label>Category name:</label>
+              <label>Name:</label>
               <b-form-input v-model="form.name"></b-form-input>
           </div>
+          <div>
+              <label>Description</label>
+              <b-form-textarea v-model="form.description"></b-form-textarea>
+          </div>
+          <div>
+              <input class="d-none" type="file" ref="file" @change="browsePhoto"/>
+              <div v-if="form.imageUrl" class="w-100 d-flex justify-content-center mt-4 mb-3">
+                  <img width="150" :src="form.imageUrl"/>
+              </div>
+              <div class="w-100 d-flex justify-content-center mt-4">
+                <b-button variant="outline-info" @click="$refs.file.click()">
+                    Choose image
+                </b-button>
+              </div>
+          </div>
           <div class="w-100 d-flex justify-content-end mt-4">
-            <b-button variant="outline-success" @click="addCategory" v-if="!editModal">Add +</b-button>
+            <b-button variant="outline-success" @click="add" v-if="!editModal">Add +</b-button>
             <b-button variant="outline-info" @click="edit" v-else>Edit</b-button>
           </div>
       </b-modal>
@@ -21,29 +36,41 @@
       </b-alert>
 
       <div class="d-flex justify-content-between align-items-center p-2">
-          <h3 class="mb-4">Categories</h3>
+          <h3 class="mb-4">Brands</h3>
           <b-button variant="outline-info" @click="prepAdd">Add +</b-button>
       </div>
       <table class="table max-auto">
           <tr>
               <th>Id</th>
               <th>Name</th>
+              <th>Description</th>
+              <th>image</th>
               <th>Create date</th>
               <th>Update date</th>
               <th>Edit</th>
               <th>Delete</th>
           </tr>
-          <tr v-for="(category,i) in categories" :key="i">
-              <td>{{ category.id }}</td>
-              <td>{{ category.name }}</td>
-              <td>{{ $moment(category.created_at).format('LLL') }}</td>
-              <td>{{ $moment(category.updated_at).format('LLL') }}</td>
+          <tr v-for="(brand,i) in brands" :key="i">
+              <td>{{ brand.id }}</td>
+              <td>{{ brand.name }}</td>
               <td>
-                  <b-button variant="outline-success" @click="prepEdit(category)">Edit</b-button>
+                  <div class="table-long-text">
+                    {{ brand.description }}
+                  </div>
+              </td>
+              <td>
+                  <div>
+                      <img width="100" :src="brand.image"/>
+                  </div>
+              </td>
+              <td>{{ $moment(brand.created_at).format('LLL') }}</td>
+              <td>{{ $moment(brand.updated_at).format('LLL') }}</td>
+              <td>
+                  <b-button variant="outline-success" @click="prepEdit(brand)">Edit</b-button>
               </td>
               <td>
                   <b-button variant="outline-danger"
-                    @click="()=>{category_id = category.id;deleteModal = true;}"
+                    @click="()=>{brand_id = brand.id;deleteModal = true;}"
                     >Delete</b-button>
               </td>
           </tr>
@@ -58,24 +85,27 @@ export default {
     layout:'admin',
     data(){
         return {
-            categories: [],
+            brands: [],
             modal: false,
             deleteModal: false,
             editModal: false,
-            category_id: null,
+            brand_id: null,
             errors:{
                 name: '',
                 alert: false
             },
             form:{
-                name: ''
+                name: '',
+                description: '',
+                imageUrl: '',
+                image: null
             }
         }
     },
     methods:{
-        async getCategories(){
-            let response = await this.$axios.get('/category');
-            this.categories = response.data;
+        async getBrands(){
+            let response = await this.$axios.get('/brand');
+            this.brands = response.data;
         },
         prepAdd(){
             for(let prop in this.form){
@@ -84,12 +114,31 @@ export default {
             this.modal = true;
             this.editModal = false;
         },
-        addCategory(){
-            this.$axios.post('/category/save',{
-                name: this.form.name
+        browsePhoto(e){
+            const input = e.target;
+
+            if(input.files && input.files[0]){
+                this.form.image = input.files[0];
+                let reader = new FileReader();
+                reader.onload = (e) => {
+                    this.form.imageUrl = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        },
+        add(){
+            let data = new FormData();
+            for(let prop in this.form){
+                data.append(prop,this.form[prop]);
+            }
+
+            this.$axios.post('/brand/save',data,{
+                headers:{
+                    'content-type': 'multipart/form-data'
+                }
             })
             .then(()=>{
-                this.getCategories();
+                this.getBrands();
                 this.modal = false;
             })
             .catch(err => {
@@ -131,7 +180,7 @@ export default {
         }
     },
     mounted(){
-        this.getCategories();
+        this.getBrands();
     }
 }
 </script>

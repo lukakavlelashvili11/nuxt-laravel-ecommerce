@@ -25,4 +25,12 @@ class CategoryController extends Controller
         $categories = $this->categoryRepository->get();
         return response()->json($categories);
     }
+
+    public function delete(Request $request){
+        $this->categoryRepository->delete($request->id);
+    }
+
+    public function edit(CategoryValidation $request){
+        $this->categoryRepository->edit($request->id,['name' => $request->name]);
+    }
 }

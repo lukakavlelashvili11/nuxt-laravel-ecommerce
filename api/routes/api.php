@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
@@ -28,3 +29,8 @@ Route::post('/logout',LogoutController::class);
 
 Route::get('/category',[CategoryController::class,'get']);
 Route::post('/category/save',[CategoryController::class,'store']);
+Route::post('/category/edit',[CategoryController::class,'edit']);
+Route::delete('/category/delete',[CategoryController::class,'delete']);
+
+Route::get('/brand',[BrandController::class,'get']);
+Route::post('/brand/save',[BrandController::class,'store']);

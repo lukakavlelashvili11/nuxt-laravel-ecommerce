@@ -4,6 +4,7 @@ namespace App\Repositories\Admin;
 use App\Models\Category;
 
 class CategoryRepository{
+    
     private $category;
 
     public function __construct(Category $category){
@@ -16,5 +17,13 @@ class CategoryRepository{
 
     public function get(){
         return $this->category->all();
+    }
+
+    public function delete(int $id){
+        $this->category->find($id)->delete();
+    }
+
+    public function edit(int $id,array $editData){
+        $this->category->find($id)->update($editData);
     }
 }
