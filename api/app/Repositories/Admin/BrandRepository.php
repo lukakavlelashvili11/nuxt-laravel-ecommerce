@@ -22,4 +22,8 @@ class BrandRepository{
     public function get(){
         return $this->brand->all();
     }
+
+    public function delete(int $id){
+        $this->brand->find($id)->delete();
+    }
 }

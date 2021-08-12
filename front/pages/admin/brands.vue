@@ -12,8 +12,8 @@
           </div>
           <div>
               <input class="d-none" type="file" ref="file" @change="browsePhoto"/>
-              <div v-if="form.imageUrl" class="w-100 d-flex justify-content-center mt-4 mb-3">
-                  <img width="150" :src="form.imageUrl"/>
+              <div v-if="form.imageurl" class="w-100 d-flex justify-content-center mt-4 mb-3">
+                  <img width="150" :src="form.imageurl"/>
               </div>
               <div class="w-100 d-flex justify-content-center mt-4">
                 <b-button variant="outline-info" @click="$refs.file.click()">
@@ -27,7 +27,7 @@
           </div>
       </b-modal>
 
-      <b-modal @ok="deleteCategory()" v-model="deleteModal" ok-title="delete" ok-variant="outline-danger" ok-only centered>
+      <b-modal @ok="remove()" v-model="deleteModal" ok-title="delete" ok-variant="outline-danger" ok-only centered>
           Are you sure you want to delete this category?
       </b-modal>
 
@@ -60,7 +60,7 @@
               </td>
               <td>
                   <div>
-                      <img width="100" :src="brand.image"/>
+                      <img width="100" :src="brand.imageurl"/>
                   </div>
               </td>
               <td>{{ $moment(brand.created_at).format('LLL') }}</td>
@@ -97,8 +97,9 @@ export default {
             form:{
                 name: '',
                 description: '',
-                imageUrl: '',
-                image: null
+                image: null,
+                imageurl: '',
+                oldImageUrl: ''
             }
         }
     },
@@ -121,7 +122,7 @@ export default {
                 this.form.image = input.files[0];
                 let reader = new FileReader();
                 reader.onload = (e) => {
-                    this.form.imageUrl = e.target.result;
+                    this.form.imageurl = e.target.result;
                 }
                 reader.readAsDataURL(input.files[0]);
             }
@@ -147,30 +148,38 @@ export default {
                 this.modal = false;
             })
         },
-        deleteCategory(){
-            this.$axios.delete('/category/delete',{
+        remove(){
+            this.$axios.delete('/brand/delete',{
                 data:{
-                    id: this.category_id
+                    id: this.brand_id
                 }
             })
             .then(() => {
-                this.getCategories();
+                this.getBrands();
             })
         },
         async prepEdit(data){
             Object.assign(this.form,data);
             this.editModal = true;
             this.modal = true;
-            this.category_id = data.id;
+            this.brand_id = data.id;
+            this.form.oldImageUrl = data.imageurl;
         },
         async edit(){
-            this.$axios.post('/category/edit',{
-                id: this.category_id,
-                name: this.form.name
+            let data = new FormData();
+            for(let prop in this.form){
+                data.append(prop,this.form[prop]);
+            }
+            data.append('id',this.brand_id);
+
+            this.$axios.post('/brand/edit',data,{
+                headers:{
+                    'content-type': 'multipart/form-data'
+                }
             })
             .then(() => {
+                this.getBrands();
                 this.modal = false;
-                this.getCategories();
             })
             .catch(err => {
                 Object.assign(this.errors,errorHandler(err));

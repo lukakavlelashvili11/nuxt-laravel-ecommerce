@@ -24,9 +24,8 @@ class BrandValidation extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:brands',
-            'description' => 'required|string',
-            'image' => 'required|mimes:jpg,jpeg,png,webp,svg'
+            'name' => 'required',
+            'description' => 'required|string'
         ];
     }
 }

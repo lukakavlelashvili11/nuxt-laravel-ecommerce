@@ -34,3 +34,5 @@ Route::delete('/category/delete',[CategoryController::class,'delete']);
 
 Route::get('/brand',[BrandController::class,'get']);
 Route::post('/brand/save',[BrandController::class,'store']);
+Route::post('/brand/edit',[BrandController::class,'edit']);
+Route::delete('/brand/delete',[BrandController::class,'delete']);
