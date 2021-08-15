@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->foreignId('brand_id')->constrained()->cascadeOnDelete();
             $table->string('name');
             $table->string('description');
-            $table->string('image');
+            $table->string('imageurl');
             $table->integer('price');
             $table->timestamps();
         });

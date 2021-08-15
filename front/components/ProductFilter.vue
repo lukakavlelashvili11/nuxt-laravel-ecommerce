@@ -3,19 +3,19 @@
       <img width="20" src="~/assets/img/filter.png" role="button" @click="filterOptions = !filterOptions">
       <div class="filter-options mt-3" v-if="filterOptions">
         <div class="filter-options__top">
-          <span>product</span>
+          <span>category</span>
           <span>brand</span>
           <img class="refresh-products" role="button" src="~/assets/img/refresh.png"/>
         </div>
         <div class="filter-options__middle w-100">
           <div class="products w-50">
             <ul>
-              <li v-for="(product,i) in products" class="p-2 pl-4" :key="i" @click="filter">{{ product }}</li>
+              <li v-for="(category,i) in categories" class="p-2 pl-4" :key="i" @click="filter">{{ category.name }}</li>
             </ul>
           </div>
           <div class="brands w-50">
             <ul>
-              <li v-for="(brand,i) in brands" class="p-2 pl-4" :key="i">{{ brand }}</li>
+              <li v-for="(brand,i) in brands" class="p-2 pl-4" :key="i">{{ brand.name }}</li>
             </ul>
           </div>
         </div>
@@ -43,21 +43,31 @@ export default {
   data(){
     return{
       priceRange:[0,5000],
-      products:['guitars','picks','amp','ac.guitar','accesories','drums','cable','pickups'],
-      brands:['ibanez','fender','jackson','dunlop'],
+      categories: [],
+      brands: [],
       filterOptions:false
     }
   },
   methods:{
-    filter(){}
+    filter(){},
+    async getFilterOptions(){
+      let response = await this.$axios.get('/filter');
+      this.brands = response.data[0];
+      this.categories = response.data[1];
+    }
+  },
+  mounted(){
+    this.getFilterOptions();
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .filter{
-    position: absolute;
-    left:20px;
+    position: relative;
+    // left:20px;
+    margin-left: 20px;
+    width: 300px;
     &-options{
       width: 400px;
       box-shadow: 0px 0px 5px rgb(106, 117, 209);

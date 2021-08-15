@@ -1,14 +1,14 @@
 <template>
-  <div class="product border p-3 mt-3">
+  <div class="product border rounded p-3 mt-3">
       <div class="product__image mx-auto">
-          <img src="~/assets/img/161576772956298.jpg"/>
+          <img :src="data.imageurl" class="mx-auto"/>
       </div>
       <div class="product__name w-100 mt-2">
-          <span class="mx-auto">ibanez magari gitaraa iyidet yvelam gtxoovt</span>
+          <span class="text-center">{{ data.name }}</span>
       </div>
       <div class="product__details d-flex justify-content-between align-items-center mt-4">
           <div class="d-flex flex-column">
-              <span class="price">137<span v-if="lari"> &#8382;</span><span v-if="!lari"> &#36;</span></span>
+              <span class="price">{{ data.price }}<span v-if="lari"> &#8382;</span><span v-if="!lari"> &#36;</span></span>
             <div class="valute-circles d-flex justify-content-start mt-1">
                 <div @click="changeValute" :style="{backgroundColor: lari ? 'pink' : 'transparent'}">&#8382;</div>
                 <div @click="changeValute" :style="{backgroundColor: !lari ? 'pink' : 'transparent'}">&#36;</div>
@@ -24,7 +24,7 @@
 <script>
 export default {
     props:[
-        'valute'
+        'data'
     ],
     data(){
         return{
@@ -40,9 +40,9 @@ export default {
             }
         }
     },
-    mounted(){
-        console.log(this.valute);
-    }
+    // mounted(){
+    //     console.log(this.valute);
+    // }
 }
 </script>
 
@@ -51,9 +51,13 @@ export default {
     width: 290px;
     height:350px;
     &__image{
-        width: 80%;
+        height: 70%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
         img{
-            width: 100%;
+            height: 100%;
+            // height: 200px;
         }
     }
     &__name{
