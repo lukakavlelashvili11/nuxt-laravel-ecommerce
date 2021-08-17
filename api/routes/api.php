@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\Admin\BrandController;
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\SignupController;
@@ -26,24 +26,30 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/login',LoginController::class);
-Route::post('/signup',SignupController::class);
-Route::post('/logout',LogoutController::class);
+//Auth
+Route::post('/login',[LoginController::class,'login']);
+Route::post('/signup',[SignupController::class,'signup']);
+Route::post('/logout',[LogoutController::class,'logout']);
 
+//User
 Route::get('/filter',[FilterController::class,'get']);
 Route::get('/brands',[BrandsController::class,'get']);
+Route::get('/product/{id}',[ProductController::class,'getById']);
 
-Route::get('/category',[CategoryController::class,'get']);
-Route::post('/category/save',[CategoryController::class,'store']);
-Route::post('/category/edit',[CategoryController::class,'edit']);
-Route::delete('/category/delete',[CategoryController::class,'delete']);
 
-Route::get('/brand',[BrandController::class,'get']);
-Route::post('/brand/save',[BrandController::class,'store']);
-Route::post('/brand/edit',[BrandController::class,'edit']);
-Route::delete('/brand/delete',[BrandController::class,'delete']);
+Route::prefix('/admin')->group(function(){
+    Route::get('/category',[CategoryController::class,'get']);
+    Route::post('/category/save',[CategoryController::class,'store']);
+    Route::post('/category/edit',[CategoryController::class,'edit']);
+    Route::delete('/category/delete',[CategoryController::class,'delete']);
 
-Route::get('/product',[ProductController::class,'get']);
-Route::post('/product/save',[ProductController::class,'store']);
-Route::post('/product/edit',[ProductController::class,'edit']);
-Route::delete('/product/delete',[ProductController::class,'delete']);
+    Route::get('/brand',[BrandController::class,'get']);
+    Route::post('/brand/save',[BrandController::class,'store']);
+    Route::post('/brand/edit',[BrandController::class,'edit']);
+    Route::delete('/brand/delete',[BrandController::class,'delete']);
+
+    Route::get('/product',[ProductController::class,'get']);
+    Route::post('/product/save',[ProductController::class,'store']);
+    Route::post('/product/edit',[ProductController::class,'edit']);
+    Route::delete('/product/delete',[ProductController::class,'delete']);
+});

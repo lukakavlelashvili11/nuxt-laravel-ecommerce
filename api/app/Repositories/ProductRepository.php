@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Admin;
+namespace App\Repositories;
 
 use App\Models\Product;
 
@@ -14,6 +14,10 @@ class ProductRepository{
 
     public function get(){
         return $this->product->with(['brand','category'])->get();
+    }
+
+    public function getById(int $id){
+        return $this->product->find($id);
     }
 
     public function store(array $productData){

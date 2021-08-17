@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\BrandValidation;
-use App\Repositories\Admin\BrandRepository;
+use App\Repositories\BrandRepository;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller{

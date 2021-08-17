@@ -74,7 +74,7 @@ export default {
     },
     methods:{
         async getCategories(){
-            let response = await this.$axios.get('/category');
+            let response = await this.$axios.get('/admin/category');
             this.categories = response.data;
         },
         prepAdd(){
@@ -85,7 +85,7 @@ export default {
             this.editModal = false;
         },
         addCategory(){
-            this.$axios.post('/category/save',{
+            this.$axios.post('/admin/category/save',{
                 name: this.form.name
             })
             .then(()=>{
@@ -99,7 +99,7 @@ export default {
             })
         },
         deleteCategory(){
-            this.$axios.delete('/category/delete',{
+            this.$axios.delete('/admin/category/delete',{
                 data:{
                     id: this.category_id
                 }
@@ -115,7 +115,7 @@ export default {
             this.category_id = data.id;
         },
         async edit(){
-            this.$axios.post('/category/edit',{
+            this.$axios.post('/admin/category/edit',{
                 id: this.category_id,
                 name: this.form.name
             })

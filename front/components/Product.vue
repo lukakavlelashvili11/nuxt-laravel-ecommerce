@@ -1,8 +1,10 @@
 <template>
   <div class="product border rounded p-3 mt-3">
-      <div class="product__image mx-auto">
-          <img :src="data.imageurl" class="mx-auto"/>
-      </div>
+      <NuxtLink :to="`/product/${data.id}`">
+        <div class="product__image mx-auto">
+            <img :src="data.imageurl" class="mx-auto"/>
+        </div>
+      </NuxtLink>
       <div class="product__name w-100 mt-2">
           <span class="text-center">{{ data.name }}</span>
       </div>

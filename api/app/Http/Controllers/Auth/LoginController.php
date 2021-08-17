@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function __invoke(SigninValidation $request){
+    public function login(SigninValidation $request){
         if(!Auth::attempt($request->only('email','password'),$request->remember)){
             throw new AuthenticationException();
         }

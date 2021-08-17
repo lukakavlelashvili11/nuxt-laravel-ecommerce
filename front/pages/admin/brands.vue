@@ -105,7 +105,7 @@ export default {
     },
     methods:{
         async getBrands(){
-            let response = await this.$axios.get('/brand');
+            let response = await this.$axios.get('/admin/brand');
             this.brands = response.data;
         },
         prepAdd(){
@@ -133,7 +133,7 @@ export default {
                 data.append(prop,this.form[prop]);
             }
 
-            this.$axios.post('/brand/save',data,{
+            this.$axios.post('/admin/brand/save',data,{
                 headers:{
                     'content-type': 'multipart/form-data'
                 }
@@ -149,7 +149,7 @@ export default {
             })
         },
         remove(){
-            this.$axios.delete('/brand/delete',{
+            this.$axios.delete('/admin/brand/delete',{
                 data:{
                     id: this.brand_id
                 }
@@ -172,7 +172,7 @@ export default {
             }
             data.append('id',this.brand_id);
 
-            this.$axios.post('/brand/edit',data,{
+            this.$axios.post('/admin/brand/edit',data,{
                 headers:{
                     'content-type': 'multipart/form-data'
                 }

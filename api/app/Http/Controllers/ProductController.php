@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\BrandValidation;
 use App\Http\Requests\Admin\ProductValidation;
-use App\Repositories\Admin\ProductRepository;
+use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -19,6 +19,11 @@ class ProductController extends Controller
     public function get(){
         $products = $this->productRepository->get();
         return response()->json($products);
+    }
+
+    public function getById(Request $request){
+        $product = $this->productRepository->getById($request->id);
+        return response()->json($product);
     }
 
     public function store(ProductValidation $request){

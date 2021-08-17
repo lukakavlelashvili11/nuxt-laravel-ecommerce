@@ -13,8 +13,8 @@
                 <span>show all</span>
             </div>
             <div class="w-100 d-flex justify-content-between align-items-center position-relative">
-                <div @click="next" class="nav d-flex align-items-center" style="left:0px;"><img style="transform:rotate(180deg)" height="50" src="@/assets/img/next.svg"/></div>
-                <div @click="prev" class="nav d-flex align-items-center" style="right:0px;"><img height="50" src="@/assets/img/next.svg"/></div>
+                <div @click="next" class="nav d-flex align-items-center" style="left:0px;"><img style="transform:rotate(180deg)" height="35" src="@/assets/img/play.svg"/></div>
+                <div @click="prev" class="nav d-flex align-items-center" style="right:0px;"><img height="35" src="@/assets/img/play.svg"/></div>
                 <Carousel 
                 :perPage="4"
                 :loop="true"

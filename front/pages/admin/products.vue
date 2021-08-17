@@ -128,7 +128,7 @@ export default {
     },
     methods:{
         async getProducts(){
-            let response = await this.$axios.get('/product');
+            let response = await this.$axios.get('/admin/product');
             this.products = response.data;
         },
         async prepAdd(){
@@ -157,7 +157,7 @@ export default {
             for(let prop in this.form){
                 data.append(prop,this.form[prop]);
             }
-            this.$axios.post('/product/save',data,{
+            this.$axios.post('/admin/product/save',data,{
                 headers:{
                     'content-type': 'multipart/form-data'
                 }
@@ -173,7 +173,7 @@ export default {
             })
         },
         remove(){
-            this.$axios.delete('/product/delete',{
+            this.$axios.delete('/admin/product/delete',{
                 data:{
                     id: this.product_id
                 }
@@ -196,7 +196,7 @@ export default {
             }
             data.append('id',this.product_id);
 
-            this.$axios.post('/product/edit',data,{
+            this.$axios.post('/admin/product/edit',data,{
                 headers:{
                     'content-type': 'multipart/form-data'
                 }

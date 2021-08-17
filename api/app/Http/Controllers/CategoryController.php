@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CategoryValidation;
-use App\Repositories\Admin\CategoryRepository;
+use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller

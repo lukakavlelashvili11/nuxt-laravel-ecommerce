@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class SignupController extends Controller
 {
-    public function __invoke(SignupValidation $request,UserRepository $user){
+    public function signup(SignupValidation $request,UserRepository $user){
         $user->store([
                 'name' => $request->username,
                 'email' => $request->email,
