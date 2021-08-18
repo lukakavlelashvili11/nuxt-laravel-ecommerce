@@ -10,9 +10,9 @@
               <div class="product__price">
                     <div class="d-flex flex-column">
                         <h5 class="price">{{ price }}<span v-if="lari"> &#8382;</span><span v-if="!lari"> &#36;</span></h5>
-                        <div class="valute-circles d-flex justify-content-start mt-1">
+                        <div class="valute-circles d-flex justify-content-start mt-1 mx-auto">
                             <div @click="changeValute" :style="{backgroundColor: lari ? 'pink' : 'transparent'}">&#8382;</div>
-                            <div class="ml-1" @click="changeValute" :style="{backgroundColor: !lari ? 'pink' : 'transparent'}">&#36;</div>
+                            <div @click="changeValute" :style="{backgroundColor: !lari ? 'pink' : 'transparent'}">&#36;</div>
                         </div>
                     </div>
                 </div>
@@ -67,8 +67,8 @@ export default {
         bottom: 0px;
         .valute-circles{
             div{
-                height: 20px;
-                width: 20px;
+                height: 22px;
+                width: 22px;
                 border-radius: 50%;
                 display: flex;
                 justify-content: center;

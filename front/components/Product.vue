@@ -11,10 +11,10 @@
       <div class="product__details d-flex justify-content-between align-items-center mt-4">
           <div class="d-flex flex-column">
               <span class="price">{{ data.price }}<span v-if="lari"> &#8382;</span><span v-if="!lari"> &#36;</span></span>
-            <div class="valute-circles d-flex justify-content-start mt-1">
+            <!-- <div class="valute-circles d-flex justify-content-start mt-1">
                 <div @click="changeValute" :style="{backgroundColor: lari ? 'pink' : 'transparent'}">&#8382;</div>
                 <div @click="changeValute" :style="{backgroundColor: !lari ? 'pink' : 'transparent'}">&#36;</div>
-            </div>
+            </div> -->
           </div>
           <div>
               <img width="25" src="~/assets/img/add-to-basket.png"/>
@@ -41,10 +41,7 @@ export default {
                 this.lari = true;
             }
         }
-    },
-    // mounted(){
-    //     console.log(this.valute);
-    // }
+    }
 }
 </script>
 
@@ -59,7 +56,6 @@ export default {
         justify-content: center;
         img{
             height: 100%;
-            // height: 200px;
         }
     }
     &__name{

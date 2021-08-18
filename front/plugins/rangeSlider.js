@@ -1,6 +1,5 @@
 import Vue from 'vue'
-import Carousel from 'vue-carousel/src/Carousel.vue'
-import Slide from 'vue-carousel/src/Slide.vue'
+import VueSlider from 'vue-slider-component'
+import 'vue-slider-component/theme/antd.css'
 
-Vue.component('Carousel',Carousel);
-Vue.component('Slide',Slide);
+Vue.component('VueSlider',VueSlider);

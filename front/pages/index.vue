@@ -1,17 +1,44 @@
 <template>
   <div>
-    <ProductFilter />
+    <Carousel
+    :perPage="1"
+    :pagination-enabled="false"
+    >
+      <Slide>
+        <div class="slider w-100 p-5">
+          <img class="w-100" src="@/assets/img/test2.jpg"/>
+        </div>
+      </Slide>
+      <Slide>
+        <div class="slider w-100 p-5">
+          <img class="w-100" src="@/assets/img/testslide.jpg"/>
+        </div>
+      </Slide>
+      <Slide>
+        <div class="slider w-100 p-5">
+          <img class="w-100" src="@/assets/img/test5.jpg"/>
+        </div>
+      </Slide>
+      <Slide>
+        <div class="slider w-100 p-5">
+          <img class="w-100" src="@/assets/img/105.jpg"/>
+        </div>
+      </Slide>
+      <Slide>
+        <div class="slider w-100 p-5">
+          <img class="w-100" src="@/assets/img/fendertest.jpg"/>
+        </div>
+      </Slide>
+    </Carousel>
     <ProductsCarousel v-for="(brand,i) in brands" :data="brand" :key="i"/>
   </div>
 </template>
 
 <script>
-import ProductFilter from "@/components/ProductFilter.vue"
 import ProductsCarousel from '@/components/ProductsCarousel.vue'
 
 export default {
   components: {
-    ProductFilter,
     ProductsCarousel
   },
   data(){
@@ -28,7 +55,7 @@ export default {
       .then(data => { this.gel = data.rates.GEL });
     },
     async fetchBrands(){
-      let response = await this.$axios.get('/brands');
+      let response = await this.$axios.get('/brand?product=1');
       this.brands = response.data;
     }
   },
@@ -41,4 +68,8 @@ export default {
 </script>
 
 <style>
+.slider{
+  height: 480px;
+  overflow: hidden;
+}
 </style>

@@ -33,7 +33,9 @@ Route::post('/logout',[LogoutController::class,'logout']);
 
 //User
 Route::get('/filter',[FilterController::class,'get']);
-Route::get('/brands',[BrandsController::class,'get']);
+Route::get('/filter-result',[FilterController::class,'getResults']);
+Route::get('/brand',[BrandController::class,'get']);
+Route::get('/brand/{id}',[BrandController::class,'getById']);
 Route::get('/product/{id}',[ProductController::class,'getById']);
 
 

@@ -1,4 +1,5 @@
 <template>
+<div class="position-relative">
   <div class="header">
       <div class="header--left">
         <NuxtLink to="/" class="header--left__logo">
@@ -22,11 +23,17 @@
           </ul>
       </div>
   </div>
+  <ProductFilter />
+</div>
 </template>
 
 <script>
-export default {
+import ProductFilter from "@/components/ProductFilter.vue"
 
+export default {
+    components: {
+    ProductFilter
+  },
 }
 </script>
 

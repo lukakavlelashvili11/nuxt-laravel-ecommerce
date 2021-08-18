@@ -2,7 +2,7 @@
   <div class="filter">
       <img width="20" src="~/assets/img/filter.png" role="button" @click="filterOptions = !filterOptions">
       <div class="filter-options mt-3" v-if="filterOptions">
-        <div class="filter-options__top">
+        <div class="filter-options__top mb-1">
           <span>category</span>
           <span>brand</span>
           <img class="refresh-products" role="button" src="~/assets/img/refresh.png"/>
@@ -10,12 +10,27 @@
         <div class="filter-options__middle w-100">
           <div class="products w-50">
             <ul>
-              <li v-for="(category,i) in categories" class="p-2 pl-4" :key="i" @click="filter">{{ category.name }}</li>
+              <li 
+                v-for="(category,i) in categories" 
+                class="p-2 pl-4" 
+                :key="i"
+                @click="addCategoryFilters(category.id)"
+                :style="{background: (categoryFilters.indexOf(category.id) !== -1 ? '#6da0f2' : 'transparent')} "
+                >
+                  {{ category.name }}
+              </li>
             </ul>
           </div>
           <div class="brands w-50">
             <ul>
-              <li v-for="(brand,i) in brands" class="p-2 pl-4" :key="i">{{ brand.name }}</li>
+              <li 
+                v-for="(brand,i) in brands" 
+                class="p-2 pl-4" :key="i"
+                @click="addBrandFilters(brand.id)"
+                :style="{background: (brandFilters.indexOf(brand.id) !== -1 ? '#6da0f2' : 'transparent')} "
+              >
+                  {{ brand.name }}
+              </li>
             </ul>
           </div>
         </div>
@@ -24,14 +39,23 @@
             <span class="text-left font-weight-bold">Filter price:</span>
           </div>
           <client-only>
-            <vue-slider 
+            <VueSlider 
             v-model="priceRange"
             :min="0"
             :max="5000"
+            :interval="5"
             />
           </client-only>
+          <div class="w-75 row mx-auto mt-1">
+            <div class="col-6">
+              <b-form-input v-model="priceRange[0]"/>
+            </div>
+            <div class="col-6">
+              <b-form-input v-model="priceRange[1]"/>
+            </div>
+          </div>
           <div class="w-100 d-flex justify-content-center">
-            <b-button variant="primary" class="mt-3">Filter</b-button>
+            <b-button variant="primary" class="mt-3" @click="filter">Filter</b-button>
           </div>
         </div>
       </div>
@@ -45,15 +69,44 @@ export default {
       priceRange:[0,5000],
       categories: [],
       brands: [],
-      filterOptions:false
+      filterOptions:false,
+      categoryFilters: [],
+      brandFilters: []
     }
   },
   methods:{
-    filter(){},
+    addCategoryFilters(id){
+      if(this.categoryFilters.indexOf(id) === -1){
+        this.categoryFilters.push(id);
+      }else{
+        let idIndex = this.categoryFilters.indexOf(id);
+        this.categoryFilters.splice(idIndex,1);
+      }
+    },
+    addBrandFilters(id){
+      if(this.brandFilters.indexOf(id) === -1){
+        this.brandFilters.push(id);
+      }else{
+        let idIndex = this.brandFilters.indexOf(id);
+        this.brandFilters.splice(idIndex,1);
+      }
+    },
     async getFilterOptions(){
       let response = await this.$axios.get('/filter');
       this.brands = response.data[0];
       this.categories = response.data[1];
+    },
+    filter(){
+      if(this.categoryFilters || this.brandFilters){
+        this.$router.push({
+          path: '/filter-result',
+          query: { 
+            c: this.categoryFilters,
+            b: this.brandFilters,
+            p: this.priceRange
+          }
+        });
+      }
     }
   },
   mounted(){
@@ -63,6 +116,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.test{
+  background: black;
+}
 .filter{
     position: relative;
     // left:20px;
@@ -100,6 +156,8 @@ export default {
           list-style: none;
           li{
             cursor: pointer;
+            border-radius: 5px;
+            margin-top: 1px;
             &:hover{
               background: rgb(241, 239, 241);
             }

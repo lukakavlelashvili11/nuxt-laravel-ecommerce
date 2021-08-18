@@ -10,7 +10,7 @@
                         <h3>{{ data.name }}</h3>
                     </div>
                 </div>
-                <span>show all</span>
+                <NuxtLink :to="`/brand/${data.id}`">show all</NuxtLink>
             </div>
             <div class="w-100 d-flex justify-content-between align-items-center position-relative">
                 <div @click="next" class="nav d-flex align-items-center" style="left:0px;"><img style="transform:rotate(180deg)" height="35" src="@/assets/img/play.svg"/></div>
@@ -64,5 +64,9 @@ export default {
     height: 30px;
     cursor: pointer;
     z-index: 10;
+}
+a{
+    color: black;
+    text-decoration: none;
 }
 </style>

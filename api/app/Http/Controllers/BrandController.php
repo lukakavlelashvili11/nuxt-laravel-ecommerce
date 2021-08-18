@@ -15,8 +15,13 @@ class BrandController extends Controller{
         $this->brandRepository = $brandRepository;
     }
 
-    public function get(){
-        $brands = $this->brandRepository->get();
+    public function get(Request $request){
+        $brands = $this->brandRepository->get($request);
+        return response()->json($brands);
+    }
+
+    public function getById(Request $request){
+        $brands = $this->brandRepository->getById($request);
         return response()->json($brands);
     }
 
