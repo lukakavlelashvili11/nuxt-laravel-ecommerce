@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\SignupController;
 use App\Http\Controllers\BrandsController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\FilterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -37,6 +38,8 @@ Route::get('/filter-result',[FilterController::class,'getResults']);
 Route::get('/brand',[BrandController::class,'get']);
 Route::get('/brand/{id}',[BrandController::class,'getById']);
 Route::get('/product/{id}',[ProductController::class,'getById']);
+Route::get('/cart',[CartController::class,'get']);
+Route::post('/cart/save',[CartController::class,'store']);
 
 
 Route::prefix('/admin')->group(function(){

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <client-only>
     <Carousel
     :perPage="1"
     :pagination-enabled="false"
@@ -30,6 +31,7 @@
         </div>
       </Slide>
     </Carousel>
+    </client-only>
     <ProductsCarousel v-for="(brand,i) in brands" :data="brand" :key="i"/>
   </div>
 </template>

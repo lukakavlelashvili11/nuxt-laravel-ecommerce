@@ -18,7 +18,9 @@
                   <a href="#">Admin</a>
               </li>
               <li>
-                  <img width="30" src="~/assets/img/shopping-cart.png"/>
+                  <NuxtLink to="/cart">
+                    <img width="30" src="~/assets/img/shopping-cart.png"/>
+                  </NuxtLink>
               </li>
           </ul>
       </div>

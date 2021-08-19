@@ -10,14 +10,10 @@
       </div>
       <div class="product__details d-flex justify-content-between align-items-center mt-4">
           <div class="d-flex flex-column">
-              <span class="price">{{ data.price }}<span v-if="lari"> &#8382;</span><span v-if="!lari"> &#36;</span></span>
-            <!-- <div class="valute-circles d-flex justify-content-start mt-1">
-                <div @click="changeValute" :style="{backgroundColor: lari ? 'pink' : 'transparent'}">&#8382;</div>
-                <div @click="changeValute" :style="{backgroundColor: !lari ? 'pink' : 'transparent'}">&#36;</div>
-            </div> -->
+              <span class="price">{{ data.price }}<span> &#8382;</span></span>
           </div>
           <div>
-              <img width="25" src="~/assets/img/add-to-basket.png"/>
+              <img @click="addToCart" role="button" width="25" src="~/assets/img/add-to-basket.png"/>
           </div>
       </div>
   </div>
@@ -28,18 +24,12 @@ export default {
     props:[
         'data'
     ],
-    data(){
-        return{
-            lari: true,
-        }
-    },
     methods:{
-        changeValute(){
-            if(this.lari){
-                this.lari = false;
-            }else{
-                this.lari = true;
-            }
+        addToCart(){
+            this.$store.dispatch('cart/storeCart',{
+                product_id: this.data.id,
+                quantity: 1
+            });
         }
     }
 }
@@ -69,21 +59,6 @@ export default {
         }
     }
     &__details{
-        .valute-circles{
-            div{
-                height: 20px;
-                width: 20px;
-                border-radius: 50%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                cursor: pointer;
-                font-size: 14px;
-                &:hover{
-                    border: 1px solid pink;
-                }
-            }
-        }
         .price{
             font-weight: 600;
         }
