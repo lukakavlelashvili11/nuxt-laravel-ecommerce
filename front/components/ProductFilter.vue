@@ -5,7 +5,7 @@
         <div class="filter-options__top mb-1">
           <span>category</span>
           <span>brand</span>
-          <img class="refresh-products" role="button" src="~/assets/img/refresh.png"/>
+          <img @click="clearFilter" class="refresh-products" role="button" src="~/assets/img/refresh.png"/>
         </div>
         <div class="filter-options__middle w-100">
           <div class="products w-50">
@@ -107,6 +107,11 @@ export default {
           }
         });
       }
+    },
+    clearFilter(){
+      this.categoryFilters = [];
+      this.brandFilters = [];
+      this.priceRange = [0,5000];
     }
   },
   mounted(){
