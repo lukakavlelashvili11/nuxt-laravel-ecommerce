@@ -40,6 +40,8 @@ Route::get('/brand/{id}',[BrandController::class,'getById']);
 Route::get('/product/{id}',[ProductController::class,'getById']);
 Route::get('/cart',[CartController::class,'get']);
 Route::post('/cart/save',[CartController::class,'store']);
+Route::post('/cart/update',[CartController::class,'update']);
+Route::delete('/cart/delete',[CartController::class,'delete']);
 
 
 Route::prefix('/admin')->group(function(){

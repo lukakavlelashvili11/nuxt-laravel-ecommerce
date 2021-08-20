@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Cart;
+use Illuminate\Http\Request;
 
 class CartRepository{
 
@@ -18,5 +19,25 @@ class CartRepository{
 
     public function store(array $cartData){
         $this->cart->create($cartData);
+    }
+
+    public function update(Request $request){
+        $this->cart
+        ->where([
+            ['user_id',auth()->user()->id],
+            ['product_id',$request->product_id]
+        ])
+        ->update(
+            ['quantity' => $request->quantity]
+        );
+    }
+
+    public function delete(int $product_id){
+        $this->cart
+        ->where([
+            ['user_id',auth()->user()->id],
+            ['product_id',$product_id]
+        ])
+        ->delete();
     }
 }

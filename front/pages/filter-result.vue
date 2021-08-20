@@ -32,7 +32,6 @@ export default {
     watch:{
         '$route.query'(){
             this.$nuxt.refresh();
-            console.log('sfdgsdfgdsfg');
         }
     }
 }

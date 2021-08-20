@@ -26,4 +26,12 @@ class CartController extends Controller
             'quantity' => $request->quantity
         ]);
     }
+
+    public function update(Request $request){
+        $this->cartRepository->update($request);
+    }
+
+    public function delete(Request $request){
+        $this->cartRepository->delete($request->product_id);
+    }
 }

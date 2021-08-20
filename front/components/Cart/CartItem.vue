@@ -15,24 +15,41 @@
     </div>
     <div class="cart-item--right d-flex justify-content-start align-items-center">
       <div class="quantity-buttons d-flex justify-content-between align-items-center">
-        <div>
-          <img width="11" src="@/assets/img/minus.svg"/>
+        <div role="button"> 
+          <img width="11" src="@/assets/img/minus.svg" @click="reduce"/>
         </div>
         <div>{{ data.quantity }}</div>
-        <div>
-          <img width="11" src="@/assets/img/plus.svg"/>
+        <div role="button">
+          <img width="11" src="@/assets/img/plus.svg" @click="increase"/>
         </div>
       </div>
-      <img class="ml-4" width="30" src="@/assets/img/close.svg" @click="increase"/>
+      <img role="button" class="ml-4" width="30" src="@/assets/img/close.svg" @click="remove"/>
     </div>
   </div>
 </template>
 
 <script>
+
 export default {
   props:['data'],
   methods:{
-    increase(){}
+    remove(){
+      this.$store.dispatch('cart/remove',{
+        product_id: this.data.product.id
+      });
+    },
+    increase(){
+      this.$store.dispatch('cart/updateQuantity',{
+        product_id: this.data.product.id,
+        quantity: this.data.quantity+1
+      });
+    },
+    reduce(){
+      this.$store.dispatch('cart/updateQuantity',{
+        product_id: this.data.product.id,
+        quantity: this.data.quantity-1
+      });
+    }
   }
 }
 </script>

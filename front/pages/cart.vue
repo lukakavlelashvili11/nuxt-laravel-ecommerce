@@ -14,6 +14,7 @@
 <script>
 import CartItem from '@/components/Cart/CartItem.vue'
 import CartPaymentDetails from '@/components/Cart/CartPaymentDetails.vue'
+import { mapMutations,mapState } from 'vuex'
 
 export default {
     components:{
@@ -26,6 +27,20 @@ export default {
 
         return {
             products
+        }
+    },
+    computed:{
+        ...mapState('cart',['action'])
+    },
+    methods:{
+        ...mapMutations('cart',['unsetAction'])
+    },
+    watch:{
+        action(val){
+            if(val){
+                this.$nuxt.refresh();
+                this.unsetAction();
+            }
         }
     }
 }
