@@ -11,7 +11,10 @@ export default {
             { hid: 'description', name: 'description', content: '' },
             { name: 'format-detection', content: 'telephone=no' }
         ],
-        link: []
+        link: [],
+        script: [{
+            src: 'https://www.paypal.com/sdk/js?client-id=AfK2HSEPZfEbwBoeu3J1cWyeq7XpjwNHcULFhn6SEv0qODBp7FOd8sBe2au2XgnIJo8BBmNF-em5Gvqj'
+        }],
     },
 
     // Global CSS: https://go.nuxtjs.dev/config-css

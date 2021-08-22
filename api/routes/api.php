@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\SignupController;
 use App\Http\Controllers\BrandsController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\FilterController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -42,6 +43,7 @@ Route::get('/cart',[CartController::class,'get']);
 Route::post('/cart/save',[CartController::class,'store']);
 Route::post('/cart/update',[CartController::class,'update']);
 Route::delete('/cart/delete',[CartController::class,'delete']);
+Route::post('/search',[SearchController::class,'get']);
 
 
 Route::prefix('/admin')->group(function(){

@@ -45,10 +45,12 @@ export default {
       });
     },
     reduce(){
-      this.$store.dispatch('cart/updateQuantity',{
-        product_id: this.data.product.id,
-        quantity: this.data.quantity-1
-      });
+      if(this.data.quantity>1){
+        this.$store.dispatch('cart/updateQuantity',{
+          product_id: this.data.product.id,
+          quantity: this.data.quantity-1
+        });
+      }
     }
   }
 }

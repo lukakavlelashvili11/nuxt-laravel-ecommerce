@@ -1,5 +1,5 @@
 <template>
-<div class="position-relative">
+<div>
   <div class="header">
       <div class="header--left">
         <NuxtLink to="/" class="header--left__logo">
@@ -25,12 +25,16 @@
           </ul>
       </div>
   </div>
-  <ProductFilter />
+  <div class="d-flex justify-content-start align-items-center ml-3">
+    <ProductFilter />
+    <Search class="ml-4 mt-1"/>
+  </div>
 </div>
 </template>
 
 <script>
 import ProductFilter from "@/components/ProductFilter.vue"
+import Search from '@/components/Search.vue'
 
 export default {
     components: {
@@ -47,7 +51,8 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 15px 0px 10px;
+    padding: 0px 10px 0px 10px;
+    height: 55px;
     &--left{
         &__logo{
             color: black;
@@ -65,7 +70,7 @@ export default {
             padding: 0px;
             list-style: none;
             li{
-                padding:10px;
+                padding: 10px;
                 a{
                     color:black;
                     text-decoration: none;

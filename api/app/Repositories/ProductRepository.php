@@ -31,4 +31,8 @@ class ProductRepository{
     public function delete(int $id){
         $this->product->find($id)->delete();
     }
+
+    public function search(string $query){
+       return $this->product->where('name','LIKE','%'.$query.'%')->get();
+    }
 }

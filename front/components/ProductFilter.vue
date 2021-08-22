@@ -125,10 +125,6 @@ export default {
   background: black;
 }
 .filter{
-    position: relative;
-    // left:20px;
-    margin-left: 20px;
-    width: 300px;
     &-options{
       width: 400px;
       box-shadow: 0px 0px 5px rgb(106, 117, 209);
