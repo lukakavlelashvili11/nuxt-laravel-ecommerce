@@ -6,12 +6,12 @@
             <b-form-input class="input" placeholder="Search something" v-model="input"/>
             <div class="search-results">
                 <div v-for="(result,i) in searchResults" :key="i" class="w-50">
-                        <NuxtLink :to="`/product/${result.id}`" class="w-100">
-                            <div class="w-100 p-2 mt-2 w-50 d-flex justify-content-start align-items-center">
-                                <img height="70" :src="result.imageurl"/>
-                                <span class="ml-3">{{ result.name }}</span>
-                            </div>
-                        </NuxtLink>
+                    <NuxtLink :to="`/product/${result.id}`" class="w-100">
+                        <div class="w-100 p-2 mt-2 w-50 d-flex justify-content-start align-items-center">
+                            <img height="70" :src="result.imageurl"/>
+                            <span class="ml-3">{{ result.name }}</span>
+                        </div>
+                    </NuxtLink>
                 </div>
             </div>
         </div>
@@ -53,7 +53,7 @@ export default {
         .input{
             width: 250px;
         }
-        &-results{
+        .search-results{
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
@@ -63,7 +63,7 @@ export default {
             position:absolute;
             z-index: 10;
             background:white;
-            box-shadow: 0px 0px 5px gray;
+            box-shadow: 0px 0px 5px rgb(252, 250, 250);
             a{
                 color: black;
                 text-decoration: none;

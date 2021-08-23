@@ -56,7 +56,10 @@ import { errorHandler } from '@/helpers/Admin/errorHandler'
 
 export default {
     layout:'admin',
-    data(){
+    async asyncData({ $axios }){
+        let response = await $axios.get('/admin/category');
+        this.categories = response.data;
+
         return {
             categories: [],
             modal: false,
@@ -73,10 +76,6 @@ export default {
         }
     },
     methods:{
-        async getCategories(){
-            let response = await this.$axios.get('/admin/category');
-            this.categories = response.data;
-        },
         prepAdd(){
             for(let prop in this.form){
                 this.form[prop] = '';
@@ -89,7 +88,7 @@ export default {
                 name: this.form.name
             })
             .then(()=>{
-                this.getCategories();
+                this.$nuxt.reload();
                 this.modal = false;
             })
             .catch(err => {
@@ -105,7 +104,7 @@ export default {
                 }
             })
             .then(() => {
-                this.getCategories();
+                this.$nuxt.reload();
             })
         },
         async prepEdit(data){
@@ -121,7 +120,7 @@ export default {
             })
             .then(() => {
                 this.modal = false;
-                this.getCategories();
+                this.$nuxt.reload();
             })
             .catch(err => {
                 Object.assign(this.errors,errorHandler(err));
@@ -129,9 +128,6 @@ export default {
                 this.modal = false;
             })
         }
-    },
-    mounted(){
-        this.getCategories();
     }
 }
 </script>

@@ -17,6 +17,7 @@ import CartPaymentDetails from '@/components/Cart/CartPaymentDetails.vue'
 import { mapMutations,mapState } from 'vuex'
 
 export default {
+    middleware: ['auth'],
     components:{
         CartItem,
         CartPaymentDetails

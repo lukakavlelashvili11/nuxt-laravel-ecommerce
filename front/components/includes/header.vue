@@ -12,10 +12,10 @@
                   {{ $auth.user.name }}
               </li>
               <li v-else>
-                  <NuxtLink to="/signin">User</NuxtLink>
+                  <NuxtLink to="/login">User</NuxtLink>
               </li>
               <li v-if="$auth.loggedIn && $auth.user.is_admin">
-                  <a href="#">Admin</a>
+                  <a href="/admin">Admin</a>
               </li>
               <li>
                   <NuxtLink to="/cart">
@@ -51,7 +51,7 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 10px 0px 10px;
+    padding: 10px 10px 0px 10px;
     height: 55px;
     &--left{
         &__logo{

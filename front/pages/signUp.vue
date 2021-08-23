@@ -6,7 +6,7 @@
         </div>
         <div class="d-flex justify-content-between align-items-center">
           <h4>Sign up</h4>
-          <NuxtLink to="/signIn">Sign in</NuxtLink>
+          <NuxtLink to="/login">Sign in</NuxtLink>
         </div>
         <div class="mt-3">
           <div class="d-flex justify-content-center flex-column">

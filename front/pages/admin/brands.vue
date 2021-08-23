@@ -83,9 +83,12 @@ import { errorHandler } from '@/helpers/Admin/errorHandler'
 
 export default {
     layout:'admin',
-    data(){
+    async asyncData({ $axios }){
+        let response = await $axios.get('/admin/brand');
+        let brands = response.data;
+
         return {
-            brands: [],
+            brands,
             modal: false,
             deleteModal: false,
             editModal: false,
@@ -104,10 +107,6 @@ export default {
         }
     },
     methods:{
-        async getBrands(){
-            let response = await this.$axios.get('/admin/brand');
-            this.brands = response.data;
-        },
         prepAdd(){
             for(let prop in this.form){
                 this.form[prop] = '';
@@ -139,7 +138,7 @@ export default {
                 }
             })
             .then(()=>{
-                this.getBrands();
+                this.$nuxt.refresh();
                 this.modal = false;
             })
             .catch(err => {
@@ -155,7 +154,7 @@ export default {
                 }
             })
             .then(() => {
-                this.getBrands();
+                this.$nuxt.refresh();
             })
         },
         async prepEdit(data){
@@ -178,7 +177,7 @@ export default {
                 }
             })
             .then(() => {
-                this.getBrands();
+                this.$nuxt.refresh();
                 this.modal = false;
             })
             .catch(err => {
@@ -187,9 +186,6 @@ export default {
                 this.modal = false;
             })
         }
-    },
-    mounted(){
-        this.getBrands();
     }
 }
 </script>
