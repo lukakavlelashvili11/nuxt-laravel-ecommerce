@@ -1,7 +1,7 @@
 <template>
   <div class="search"> 
       <div class="w-100 d-flex justify-content-between align-items-center">
-        <img width="20" src="@/assets/img/loupe.svg" @click="search = !search;input =''"/>
+        <img role="button" width="20" src="@/assets/img/loupe.svg" @click="search = !search;input =''"/>
         <div v-if="search" class="search-box position-absolute">
             <b-form-input class="input" placeholder="Search something" v-model="input"/>
             <div class="search-results">

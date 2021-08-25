@@ -13,7 +13,7 @@ export default {
         ],
         link: [],
         script: [{
-            src: 'https://www.paypal.com/sdk/js?client-id=AfK2HSEPZfEbwBoeu3J1cWyeq7XpjwNHcULFhn6SEv0qODBp7FOd8sBe2au2XgnIJo8BBmNF-em5Gvqj'
+            src: 'https://www.paypal.com/sdk/js?client-id=AfK2HSEPZfEbwBoeu3J1cWyeq7XpjwNHcULFhn6SEv0qODBp7FOd8sBe2au2XgnIJo8BBmNF-em5Gvqj&disable-funding=card'
         }],
     },
 

@@ -4,7 +4,7 @@
       <div class="cart-item__image">
         <img :src="data.product.imageurl"/>
       </div>
-      <div class="cart-item__title ml-2 d-flex flex-column">
+      <div class="cart-item__title ml-3 d-flex flex-column">
         <span>
           {{ data.product.name }}
         </span>
@@ -59,9 +59,9 @@ export default {
 <style lang="scss" scoped>
 .cart-item{
   width: 100%;
-  border: 1px solid #b9ceee;
   border-radius: 10px;
-  margin-top: 1px;
+  margin-top: 5px;
+  box-shadow: 0px 0px 10px rgb(216, 213, 213);
   &__image{
     img{
       height: 85px;

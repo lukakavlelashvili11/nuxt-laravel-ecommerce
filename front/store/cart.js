@@ -19,11 +19,6 @@ export default {
         }
     },
     actions: {
-        // async fetchCart({ commit }){
-        //     let response = await this.$axios.get('/cart');
-        //     commit('setCart',response.data);
-        // },
-
         async storeCart(store,{ product_id,quantity }){
             await this.$axios.post('/cart/save',{
                 product_id: product_id,

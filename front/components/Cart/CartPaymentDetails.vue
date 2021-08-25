@@ -1,28 +1,27 @@
 <template>
-  <div class="payment w-100 border">
+  <div class="payment w-100 p-3">
       <div class="payment__details">
-          <ul class="w-100 p-2">
+          <ul class="w-100">
               <li v-for="(pd,i) in data" class="d-flex justify-content-between align-items-center w-100">
-                  <span><span class="name">{{ pd.product.name }}</span><span style="color:#eb4034;">({{ pd.quantity }})</span></span>
+                  <span><span class="name">{{ pd.product.name }}</span><span style="color:#ff9378;">({{ pd.quantity }})</span></span>
                   <span>{{ pd.quantity*pd.product.price }} &#8382;</span>
               </li>
           </ul>
       </div>
-      <div class="w-100 p-2 d-flex justify-content-between align-items-center">
+      <div class="w-100 d-flex justify-content-between align-items-center">
           <span>Sum</span>
           <span>{{ sum }} &#8382;</span>
+      </div>
+      <div class="d-flex justify-content-center p-3">
+          <b-button variant="outline-primary" @click="$router.push('/checkout')">Check out</b-button>
       </div>
   </div>
 </template>
 
 <script>
-// import { mapState,mapMutations } from 'vuex'  
 
 export default {
     props: ['data'],
-    methods:{
-        // ...mapMutations('cart',['setSum'])
-    },
     computed:{
         sum(){
             var sum = 0;
@@ -31,12 +30,6 @@ export default {
             }
             return sum;
         }
-        // ...mapState('cart',{
-        //     sum: state => state.sum
-        // })
-    },
-    mounted(){
-        // this.setSum();
     }
 }
 </script>
@@ -44,9 +37,11 @@ export default {
 <style lang="scss" scoped>
 .payment{
     border-radius: 10px;
+    box-shadow: 0px 0px 10px rgb(216, 213, 213);
     &__details{
         ul{
             list-style: none;
+            padding: 0px;
             li{
                 width: 100%;
                 .name{
