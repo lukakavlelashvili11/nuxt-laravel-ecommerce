@@ -24,6 +24,7 @@ export default {
                 product_id: product_id,
                 quantity: quantity
             });
+            store.commit('setAction');
         },
 
         async remove({ commit },{ product_id }){
@@ -39,13 +40,6 @@ export default {
                 ...data
             });
             commit('setAction');
-        }
-    },
-    getters: {
-        sum(state){
-            state.cartItems.forEach(prop => 
-                this.sum += prop.quantity*prop.product.price
-            );
         }
     }
 }

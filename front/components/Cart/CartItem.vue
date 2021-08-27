@@ -76,5 +76,8 @@ export default {
       border-radius: 10px;
     }
   }
+  &:hover{
+    box-shadow: 0px 0px 5px rgb(236, 234, 234);
+  }
 }
 </style>

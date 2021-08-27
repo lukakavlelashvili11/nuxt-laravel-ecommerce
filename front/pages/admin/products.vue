@@ -137,8 +137,8 @@ export default {
             }
             this.modal = true;
             this.editModal = false;
-            this.brands = (await this.$axios.get('/brand')).data;
-            this.categories = (await this.$axios.get('/category')).data;
+            this.brands = (await this.$axios.get('/admin/brand')).data;
+            this.categories = (await this.$axios.get('/admin/category')).data;
         },
         browsePhoto(e){
             const input = e.target;

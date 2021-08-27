@@ -50,5 +50,8 @@ export default {
             }
         }
     }
+    &:hover{
+        box-shadow: 0px 0px 15px rgb(216, 213, 213);
+    }
 }
 </style>

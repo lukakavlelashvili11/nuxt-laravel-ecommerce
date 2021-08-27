@@ -1,14 +1,14 @@
 <template>
-  <div class="product border rounded p-3 mt-3">
+  <div class="product border rounded mt-3 pt-3">
       <NuxtLink :to="`/product/${data.id}`">
-        <div class="product__image mx-auto">
+        <div class="product__image mx-auto pl-3 pr-3">
             <img :src="data.imageurl" class="mx-auto"/>
         </div>
       </NuxtLink>
-      <div class="product__name w-100 mt-2">
+      <div class="product__name w-100 mt-2 pl-3 pr-3">
           <span class="text-center">{{ data.name }}</span>
       </div>
-      <div class="product__details d-flex justify-content-between align-items-center mt-4">
+      <div class="product__details d-flex justify-content-between align-items-center p-3">
           <div class="d-flex flex-column">
               <span class="price">{{ data.price }}<span> &#8382;</span></span>
           </div>
@@ -39,6 +39,7 @@ export default {
 .product{
     width: 290px;
     height:350px;
+    position: relative;
     &__image{
         height: 70%;
         width: 100%;
@@ -59,8 +60,19 @@ export default {
         }
     }
     &__details{
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        height: 60px;
+        transition: 0.3s;
+        transition-timing-function: linear;
         .price{
             font-weight: 600;
+        }
+    }
+    &:hover{
+        .product__details{
+            background: #fae1d3;
         }
     }
 }

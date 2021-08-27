@@ -42,7 +42,7 @@
         <div class="w-100 d-flex justify-content-center mt-3">
           <span class="text-secondary">or</span>
         </div>
-        <div @click="logout" class="google-button position-relative w-100 d-flex justify-content-center align-items-center mt-3">
+        <div @click="loginWithGoogle" class="google-button position-relative w-100 d-flex justify-content-center align-items-center mt-3">
           <div class="google-logo">
             <img src="~/assets/img/google-logo.png"/>
           </div>
@@ -89,8 +89,10 @@ export default {
         }
       }
     },
-    logout(){
-      this.$auth.logout();
+    loginWithGoogle(){
+      // this.$auth.logout();
+      this.$auth.loginWith('google')
+
     }
   }
 }

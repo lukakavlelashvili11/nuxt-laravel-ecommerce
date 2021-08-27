@@ -62,7 +62,14 @@ export default {
                         methods: 'GET'
                     }
                 }
-            }
+            },
+            google: {
+                clientId: '377412633142-684jfqs76qu770r5fvur0n34hddddnsc.apps.googleusercontent.com',
+                codeChallengeMethod: "",
+                responseType: 'token id_token',
+                redirectUri: "http://localhost:3000/callback",
+                scope: ['profile', 'email']
+              }
         }
     },
 
