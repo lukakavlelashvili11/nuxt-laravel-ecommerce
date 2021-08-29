@@ -4,10 +4,10 @@
         <div class="product__image mx-auto pl-3 pr-3">
             <img :src="data.imageurl" class="mx-auto"/>
         </div>
+        <div class="product__name w-100 mt-2 pl-3 pr-3">
+            <span class="text-center">{{ data.name }}</span>
+        </div>
       </NuxtLink>
-      <div class="product__name w-100 mt-2 pl-3 pr-3">
-          <span class="text-center">{{ data.name }}</span>
-      </div>
       <div class="product__details d-flex justify-content-between align-items-center p-3">
           <div class="d-flex flex-column">
               <span class="price">{{ data.price }}<span> &#8382;</span></span>
@@ -56,7 +56,8 @@ export default {
             text-overflow: ellipsis;
             overflow: hidden;
             white-space: nowrap;
-            display:block
+            display:block;
+            color: black;
         }
     }
     &__details{
@@ -72,8 +73,11 @@ export default {
     }
     &:hover{
         .product__details{
-            background: #fae1d3;
+            background: #cae3cc;
         }
+    }
+    a{
+        text-decoration: none;
     }
 }
 </style>

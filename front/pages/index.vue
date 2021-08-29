@@ -1,6 +1,6 @@
 <template>
   <div>
-    <client-only>
+    <!-- <client-only>
     <Carousel
     :perPage="1"
     :pagination-enabled="false"
@@ -31,17 +31,21 @@
         </div>
       </Slide>
     </Carousel>
-    </client-only>
-    <ProductsCarousel v-for="(brand,i) in brands" :data="brand" :key="i"/>
+    </client-only> -->
+      <BrandsCarousel v-for="(brand,i) in brands" :data="brand" :key="i">
+        <ProductsCarousel :data="brand.product"/>
+      </BrandsCarousel>
   </div>
 </template>
 
 <script>
 import ProductsCarousel from '@/components/ProductsCarousel.vue'
+import BrandsCarousel from '@/components/BrandsCarousel.vue'
 
 export default {
   components: {
-    ProductsCarousel
+    ProductsCarousel,
+    BrandsCarousel
   },
   data(){
     return{

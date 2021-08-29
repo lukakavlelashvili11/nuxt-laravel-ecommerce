@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Product;
+use Illuminate\Http\Request;
 
 class ProductRepository{
 
@@ -18,6 +19,15 @@ class ProductRepository{
 
     public function getById(int $id){
         return $this->product->find($id);
+    }
+
+    public function getSimilarById(Request $request){
+        return $this->product
+        ->where('brand_id',$request->id)
+        ->when(!!$request->except,function($q) use ($request){
+            $q->where('id','!=',$request->except);
+        })
+        ->get();
     }
 
     public function store(array $productData){

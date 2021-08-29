@@ -1,7 +1,7 @@
 <template>
   <div class="alert mx-auto" v-if="showAlert">
-      <b-alert variant="success" show>
-          Product has added in cart.
+      <b-alert :variant="alertVariant" show>
+         {{ alertText }}
       </b-alert>
   </div>
 </template>
@@ -12,24 +12,36 @@ import { mapState,mapMutations } from 'vuex'
 export default {
     data(){
         return{
-            showAlert: false
+            showAlert: false,
+            alertText: '',
+            alertVariant: ''
         }
     },
     computed:{
         ...mapState('cart',{
-            action: state => state.action
+            cartStatus: state => state.cartStatus
         })
     },
     methods:{
-        ...mapMutations('cart',['unsetAction'])
+        ...mapMutations('cart',['unsetCartStatus'])
     },
     watch:{
-        action(val){
-            if(val){
+        cartStatus(val){
+            if(val === 'exists' || val === 'added'){
+                switch(val){
+                    case 'exists':
+                        this.alertVariant = 'danger';
+                        this.alertText = 'The product alresdy exixts in cart!';
+                        break;
+                    case 'added':
+                        this.alertVariant = 'success';
+                        this.alertText = 'The product has added in cart!';
+                        break;
+                }
                 this.showAlert = true;
                 setTimeout(()=>{
                     this.showAlert = false;
-                    this.unsetAction();
+                    this.unsetCartStatus();
                 },2000)
             }
         }
@@ -42,6 +54,6 @@ export default {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 260px;
+    width: 290px;
 }
 </style>

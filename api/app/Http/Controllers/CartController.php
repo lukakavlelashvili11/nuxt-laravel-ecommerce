@@ -20,7 +20,7 @@ class CartController extends Controller
     }
 
     public function store(CartValidation $request){
-        $this->cartRepository->store([
+        return $this->cartRepository->store([
             'user_id' => auth()->user()->id,
             'product_id' => $request->product_id,
             'quantity' => $request->quantity
@@ -33,5 +33,9 @@ class CartController extends Controller
 
     public function delete(Request $request){
         $this->cartRepository->delete($request->product_id);
+    }
+
+    public function getCount(){
+        return $this->cartRepository->getCount();
     }
 }

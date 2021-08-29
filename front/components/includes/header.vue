@@ -18,9 +18,7 @@
                   <a href="/admin">Admin</a>
               </li>
               <li>
-                  <NuxtLink to="/cart">
-                    <img width="30" src="~/assets/img/shopping-cart.png"/>
-                  </NuxtLink>
+                  <CartLogo/>
               </li>
           </ul>
       </div>
@@ -33,12 +31,15 @@
 </template>
 
 <script>
+import CartLogo from '@/components/Cart/CartLogo.vue'
 import ProductFilter from "@/components/ProductFilter.vue"
 import Search from '@/components/Search.vue'
 
 export default {
     components: {
-    ProductFilter
+        ProductFilter,
+        Search,
+        CartLogo
   },
 }
 </script>

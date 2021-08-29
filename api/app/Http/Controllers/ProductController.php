@@ -26,6 +26,11 @@ class ProductController extends Controller
         return response()->json($product);
     }
 
+    public function getSimilarById(Request $request){
+        $similarProducts = $this->productRepository->getSimilarById($request);
+        return response()->json($similarProducts);
+    }
+
     public function store(ProductValidation $request){
         if($request->file()){
             $file_name_for_front = $this->storeImage($request);

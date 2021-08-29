@@ -39,11 +39,16 @@ Route::get('/filter-result',[FilterController::class,'getResults']);
 Route::get('/brand',[BrandController::class,'get']);
 Route::get('/brand/{id}',[BrandController::class,'getById']);
 Route::get('/product/{id}',[ProductController::class,'getById']);
+Route::get('/product/similar/{id}',[ProductController::class,'getSimilarById']);
+Route::post('/search',[SearchController::class,'get']);
+
+
+//Cart
 Route::get('/cart',[CartController::class,'get']);
 Route::post('/cart/save',[CartController::class,'store']);
 Route::post('/cart/update',[CartController::class,'update']);
 Route::delete('/cart/delete',[CartController::class,'delete']);
-Route::post('/search',[SearchController::class,'get']);
+Route::get('/cart/count',[CartController::class,'getCount']);
 
 
 Route::prefix('/admin')->group(function(){

@@ -15,12 +15,12 @@
     </div>
     <div class="cart-item--right d-flex justify-content-start align-items-center">
       <div class="quantity-buttons d-flex justify-content-between align-items-center">
-        <div role="button"> 
-          <img width="11" src="@/assets/img/minus.svg" @click="reduce"/>
+        <div role="button" @click="reduce"> 
+          <img width="11" src="@/assets/img/minus.svg"/>
         </div>
         <div>{{ data.quantity }}</div>
-        <div role="button">
-          <img width="11" src="@/assets/img/plus.svg" @click="increase"/>
+        <div role="button" @click="increase">
+          <img width="11" src="@/assets/img/plus.svg"/>
         </div>
       </div>
       <img role="button" class="ml-4" width="30" src="@/assets/img/close.svg" @click="remove"/>
@@ -62,6 +62,7 @@ export default {
   border-radius: 10px;
   margin-top: 5px;
   box-shadow: 0px 0px 10px rgb(216, 213, 213);
+  transition: .2s;
   &__image{
     img{
       height: 85px;

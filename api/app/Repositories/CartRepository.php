@@ -18,7 +18,12 @@ class CartRepository{
     }
 
     public function store(array $cartData){
-        $this->cart->create($cartData);
+        if($this->cart->where('product_id',$cartData['product_id'])->exists()){
+            return 'exists';
+        }else{
+            $this->cart->create($cartData);
+            return 'added';
+        }
     }
 
     public function update(Request $request){
@@ -39,5 +44,9 @@ class CartRepository{
             ['product_id',$product_id]
         ])
         ->delete();
+    }
+
+    public function getCount(){
+        return $this->cart->where('user_id',auth()->user()->id)->count();
     }
 }
