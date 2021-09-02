@@ -54,7 +54,6 @@ export default {
 <style lang="scss">
 .product__payment{
     position: absolute;
-    /* left: 30px; */
     bottom: 0px;
     width: 90%;
     .product__price{
@@ -73,6 +72,11 @@ export default {
                 }
             }
         }
+    }
+}
+@media (max-width: 768px){
+    .product__payment{
+        position: inherit;
     }
 }
 </style>

@@ -90,7 +90,6 @@ export default {
       }
     },
     loginWithGoogle(){
-      // this.$auth.logout();
       this.$auth.loginWith('google')
 
     }
@@ -144,5 +143,10 @@ export default {
       top:-60px;
       z-index:-30;
     }
+}
+@media (max-width: 420px){
+  .register{
+    width: 100%;
+  }
 }
 </style>

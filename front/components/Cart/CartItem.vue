@@ -5,10 +5,10 @@
         <img :src="data.product.imageurl"/>
       </div>
       <div class="cart-item__title ml-3 d-flex flex-column">
-        <span>
+        <span class="product-name">
           {{ data.product.name }}
         </span>
-        <span>
+        <span class="product-price">
           {{ data.product.price }} &#8382;
         </span>
       </div>
@@ -23,7 +23,7 @@
           <img width="11" src="@/assets/img/plus.svg"/>
         </div>
       </div>
-      <img role="button" class="ml-4" width="30" src="@/assets/img/close.svg" @click="remove"/>
+      <img role="button" class="remove ml-4" width="30" src="@/assets/img/close.svg" @click="remove"/>
     </div>
   </div>
 </template>
@@ -80,5 +80,19 @@ export default {
   &:hover{
     box-shadow: 0px 0px 5px rgb(236, 234, 234);
   }
+}
+@media (max-width: 400px){
+    .product-name,.product-price{
+        font-size: 13px !important;
+    }
+    .product-name{
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      width: 80px;
+    }
+    .remove{
+      margin-left: 10px !important;
+    }
 }
 </style>

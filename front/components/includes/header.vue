@@ -9,7 +9,8 @@
       <div class="header--right">
           <ul>
               <li v-if="$auth.loggedIn">
-                  {{ $auth.user.name }}
+                  <div @click="logOut = !logOut" role="button">{{ $auth.user.name }}</div>
+                  <div class="position-absolute" role="button" v-if="logOut" @click="$auth.logout();logOut = false">Log out</div>
               </li>
               <li v-else>
                   <NuxtLink to="/login">User</NuxtLink>
@@ -18,7 +19,7 @@
                   <a href="/admin">Admin</a>
               </li>
               <li>
-                  <CartLogo/>
+                  <CartLogo v-if="$auth.loggedIn"/>
               </li>
           </ul>
       </div>
@@ -41,6 +42,11 @@ export default {
         Search,
         CartLogo
   },
+  data(){
+      return{
+          logOut:false
+      }
+  }
 }
 </script>
 

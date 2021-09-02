@@ -106,6 +106,7 @@ export default {
             p: this.priceRange
           }
         });
+        this.filterOptions = false;
       }
     },
     clearFilter(){
@@ -166,5 +167,15 @@ export default {
         }
       }
     }
+}
+@media (max-width: 991px){
+  .filter-options{
+    position: fixed;
+    top: -16px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+  }
 }
 </style>

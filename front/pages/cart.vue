@@ -1,10 +1,10 @@
 <template>
   <div>
-      <div class="row w-100 p-4">
-        <div class="col-8 p-3" style="border-top:1px solid #b9ceee;border-bottom:1px solid #b9ceee;border-radius:10px;">
+      <div class="cart w-100 p-4">
+        <div class="cart-items mr-4 p-3">
             <CartItem v-for="(product,i) in products" :key="i" :data="product"/>
         </div>
-        <div class="col-4">
+        <div class="cart-payments mx-auto">
             <CartPaymentDetails :data="products"/>
         </div>
       </div>
@@ -47,6 +47,38 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.cart{
+    display: flex;
+    justify-content: space-between;
+    &-items{
+        width: 65%;
+        border-top:1px solid #b9ceee;
+        border-bottom:1px solid #b9ceee;
+        border-radius:10px;
+    }
+    &-payments{
+        width: 35%;
+    }
+}
+@media (max-width: 991px){
+    .cart{
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        padding: 2px !important;
+        &-items{
+            width: 100%;
+            padding: 0px !important;
+            border: none;
+            .product-name,.product-price{
+                font-size: 13px !important;
+            }
+        }
+        &-payments{
+            margin-top: 20px;
+            width: 100%;
+        }
+    }
+}
 </style>

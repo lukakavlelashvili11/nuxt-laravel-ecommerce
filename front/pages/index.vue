@@ -49,8 +49,8 @@ export default {
   },
   data(){
     return{
-      data:[1,2,3,4,5,6],
-      gel:0,
+      data: [1,2,3,4,5,6],
+      gel: 0,
       brands: []
     }
   },

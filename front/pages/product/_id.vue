@@ -4,8 +4,7 @@
           <div class="product__image">
               <img :src="product.imageurl"/>
           </div>
-          <div class="product__description position-relative">
-              <ProductPayments :data="product" class="mobile-payments d-none"/>
+          <div class="product__description p-3 position-relative">
               <div>
                 <h3 class="text-center">{{ product.name }}</h3>
                 <p>{{ product.description }}</p>
@@ -47,6 +46,7 @@ export default {
     &__image{
         display: flex;
         justify-content: center;
+        align-items: center;
         width: 40%;
         img{
             height: 400px;
@@ -59,19 +59,14 @@ export default {
 @media (max-width: 768px){
     .product{
         flex-direction: column;
-        border:1px solid black;
-        // div{
-        //     width: 100%;
-        // }
-        &__description{
-            display: flex;
-            flex-direction: column-reverse;
+        &__image{
+            img{
+                width: 300px;
+                height: auto;
+            }
         }
-        .desktop-payments{
-            display: none !important;
-        }
-        .mobile-payments{
-            display: block !important;
+        div{
+            width: 100%;
         }
     }
 }

@@ -146,4 +146,9 @@ export default {
       z-index:-30;
     }
 }
+@media (max-width: 420px){
+  .register{
+    width: 100%;
+  }
+}
 </style>
