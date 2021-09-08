@@ -30,12 +30,16 @@ export default {
     },
     actions: {
         async storeCart(store,{ product_id,quantity }){
-            let status = await this.$axios.post('/cart/save',{
-                product_id: product_id,
-                quantity: quantity
-            });
-            store.commit('setCartStatus',status.data);
-            store.commit('setAction');
+            if(this.$auth.loggedIn){
+                let status = await this.$axios.post('/cart/save',{
+                    product_id: product_id,
+                    quantity: quantity
+                });
+                store.commit('setCartStatus',status.data);
+                store.commit('setAction');
+            }else{
+                this.$router.push('/login');
+            }
         },
 
         async remove({ commit },{ product_id }){
