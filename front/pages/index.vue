@@ -1,37 +1,5 @@
 <template>
   <div>
-    <!-- <client-only>
-    <Carousel
-    :perPage="1"
-    :pagination-enabled="false"
-    >
-      <Slide>
-        <div class="slider w-100 p-5">
-          <img class="w-100" src="@/assets/img/test2.jpg"/>
-        </div>
-      </Slide>
-      <Slide>
-        <div class="slider w-100 p-5">
-          <img class="w-100" src="@/assets/img/testslide.jpg"/>
-        </div>
-      </Slide>
-      <Slide>
-        <div class="slider w-100 p-5">
-          <img class="w-100" src="@/assets/img/test5.jpg"/>
-        </div>
-      </Slide>
-      <Slide>
-        <div class="slider w-100 p-5">
-          <img class="w-100" src="@/assets/img/105.jpg"/>
-        </div>
-      </Slide>
-      <Slide>
-        <div class="slider w-100 p-5">
-          <img class="w-100" src="@/assets/img/fendertest.jpg"/>
-        </div>
-      </Slide>
-    </Carousel>
-    </client-only> -->
       <BrandsCarousel v-for="(brand,i) in brands" :data="brand" :key="i">
         <ProductsCarousel :data="brand.product"/>
       </BrandsCarousel>
@@ -68,7 +36,6 @@ export default {
   mounted(){
     this.fetchValute();
     this.fetchBrands();
-    // console.log(valute.then(res => res))
   }
 }
 </script>
